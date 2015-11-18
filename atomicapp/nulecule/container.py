@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class DockerHandler(object):
     """Interface to interact with Docker."""
 
-    def __init__(self, dryrun=False, docker_cli='/usr/bin/docker'):
+    def __init__(self, dryrun=False, docker_cli='/usr/local/bin/docker'):
         self.dryrun = dryrun
         self.docker_cli = docker_cli
 
@@ -80,8 +80,14 @@ class DockerHandler(object):
         logger.debug('Running Docker container: %s' % ' '.join(run_cmd))
         container_id = subprocess.check_output(run_cmd).strip()
 
+
         # Copy files out of dummy container to tmpdir
+        # workaround mac
         tmpdir = '/tmp/nulecule-{}'.format(uuid.uuid1())
+        mkdir_cmd = ['/bin/mkdir', tmpdir]
+        logger.debug('creating tmpdir %s' % tmpdir)
+        subprocess.call(mkdir_cmd)
+
         cp_cmd = [self.docker_cli, 'cp',
                   '%s:/%s' % (container_id, source),
                   tmpdir]
