@@ -29,7 +29,7 @@ __NULECULESPECVERSION__ = '0.0.2'
 EXTERNAL_APP_DIR = "external"
 GLOBAL_CONF = "general"
 APP_ENT_PATH = "application-entity"
-CACHE_DIR = "/var/lib/atomicapp"
+CACHE_DIR = "/tmp/atomicapp"
 
 PARAMS_KEY = "params"
 RESOURCE_KEY = "resource"
@@ -42,7 +42,7 @@ ANSWERS_RUNTIME_FILE = "answers.conf.gen"
 ANSWERS_FILE_SAMPLE = "answers.conf.sample"
 ANSWERS_FILE_SAMPLE_FORMAT = 'ini'
 WORKDIR = ".workdir"
-LOCK_FILE = "/run/lock/atomicapp.lock"
+LOCK_FILE = "/tmp/atomicapp.lock"
 HOST_DIR = "/host"
 
 DEFAULT_PROVIDER = "kubernetes"
